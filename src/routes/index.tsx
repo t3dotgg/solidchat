@@ -35,7 +35,7 @@ export default function Chat() {
 const Message = ({ message }: { message: Message }) => {
   onMount(() => document.getElementById(message.user.id)?.scrollIntoView());
   return (
-    <div id={message.user.id}>
+    <div class="animate-fade-in" id={message.user.id}>
       <span
         class="font-bold"
         style={{ color: message.user.color ?? "#000000" }}
