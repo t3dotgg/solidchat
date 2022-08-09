@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
-    "start": "solid-start start"
+    "start": "solid-start start",
+    "postinstall": "patch-package"
   },
   "type": "module",
   "devDependencies": {
@@ -11,10 +12,12 @@
     "@solidjs/router": "^0.4.2",
     "@types/tmi.js": "^1.8.1",
     "autoprefixer": "^10.4.2",
+    "patch-package": "^6.4.7",
     "postcss": "^8.4.6",
     "solid-js": "1.4.7",
     "solid-start": "0.1.0-alpha.99",
     "solid-start-node": "0.1.0-alpha.99",
+    "solid-start-vercel": "^0.1.0-alpha.99",
     "tailwindcss": "^3.0.18",
     "typescript": "^4.6.2",
     "vite": "^3.0.4"
@@ -23,7 +26,6 @@
     "node": ">=14"
   },
   "dependencies": {
-    "solid-start-vercel": "^0.1.0-alpha.40",
     "tmi.js": "^1.8.5"
   }
 }
