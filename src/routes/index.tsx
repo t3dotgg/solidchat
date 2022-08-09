@@ -1,12 +1,6 @@
 import tmi from "tmi.js";
 import { createSignal, For, onMount } from "solid-js";
 
-const client = new tmi.Client({
-  channels: ["#xqc"],
-});
-
-client.connect();
-
 type Message = {
   user: tmi.ChatUserstate;
   body: string;
@@ -14,14 +8,22 @@ type Message = {
 
 const [signal, setSignal] = createSignal<Message[]>([]);
 
-client.on("message", (channel, userstate, message) =>
-  setSignal((prev) => [...prev, { user: userstate, body: message }])
-);
+if (typeof window !== undefined) {
+  const client = new tmi.Client({
+    channels: ["#xqc"],
+  });
+
+  client.connect();
+
+  client.on("message", (channel, userstate, message) =>
+    setSignal((prev) => [...prev, { user: userstate, body: message }])
+  );
+}
 
 export default function Chat() {
   return (
     <div class="h-screen overflow-y-scroll">
-      <div class="flex flex-col w-96 bg-gray-200">
+      <div class="flex flex-col w-96 bg-gray-200 text-lg p-4">
         <For each={signal()} fallback={<div />}>
           {(item) => <Message message={item} />}
         </For>
