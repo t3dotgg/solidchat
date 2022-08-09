@@ -23,6 +23,7 @@
     "node": ">=14"
   },
   "dependencies": {
+    "solid-start-vercel": "^0.1.0-alpha.40",
     "tmi.js": "^1.8.5"
   }
 }
