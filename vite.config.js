@@ -1,4 +1,4 @@
-import solid from "solid-start/vite";
+import solid from "solid-start";
 import { defineConfig } from "vite";
 
 import vercel from "solid-start-vercel";
