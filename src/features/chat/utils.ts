@@ -78,7 +78,7 @@ export type TwitchChatMessage = {
 };
 
 const [signal, setSignal] = createSignal<TwitchChatMessage[]>([
-  { ...mockMessage, html: getMessageHTML(mockMessage.body, mockMessage.user) },
+  // { ...mockMessage, html: getMessageHTML(mockMessage.body, mockMessage.user) },
 ]);
 
 /**
@@ -101,7 +101,7 @@ export const startChat = async (channel: string) => {
     client.on("message", (channel, userstate, message) => {
       console.log("state", userstate);
       setSignal((prev) => [
-        ...prev,
+        ...prev.slice(-100),
         {
           user: userstate,
           body: message,
