@@ -4,7 +4,7 @@ import {
   chatMessagesSignal,
   startChat,
   TwitchChatMessage,
-} from "~/components/chat/utils";
+} from "~/features/chat/utils";
 
 import autoAnimate from "@formkit/auto-animate";
 
