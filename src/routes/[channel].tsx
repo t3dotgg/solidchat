@@ -23,14 +23,14 @@ export default function Chat() {
 const Message = ({ message }: { message: TwitchChatMessage }) => {
   onMount(() => document.getElementById(message.user.id)?.scrollIntoView());
   return (
-    <div class="animate-fade-in" id={message.user.id}>
+    <div class="animate-fade-in text" id={message.user.id}>
       <span
         class="font-bold"
         style={{ color: message.user.color ?? "#000000" }}
       >
         {message.user["display-name"]}:{" "}
       </span>
-      <span innerHTML={message.html} />
+      <span innerHTML={message.html} class="break-words" />
     </div>
   );
 };
