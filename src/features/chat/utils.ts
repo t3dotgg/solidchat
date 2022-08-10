@@ -91,24 +91,22 @@ export const chatMessagesSignal = signal;
  */
 export const startChat = async (channel: string) => {
   const tmi = await import("tmi.js");
-  if (typeof window !== undefined) {
-    const client = new tmi.Client({
-      channels: [`#${channel}`],
-    });
+  const client = new tmi.Client({
+    channels: [`#${channel}`],
+  });
 
-    client.connect();
+  client.connect();
 
-    client.on("message", (channel, userstate, message) => {
-      setSignal((prev) => [
-        ...prev.slice(-100),
-        {
-          user: userstate,
-          body: message,
-          html: getMessageHTML(message, userstate),
-        },
-      ]);
-    });
+  client.on("message", (channel, userstate, message) => {
+    setSignal((prev) => [
+      ...prev.slice(-100),
+      {
+        user: userstate,
+        body: message,
+        html: getMessageHTML(message, userstate),
+      },
+    ]);
+  });
 
-    return client;
-  }
+  return client;
 };
