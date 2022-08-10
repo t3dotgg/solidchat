@@ -4,12 +4,15 @@ import {
   chatMessagesSignal,
   startChat,
   TwitchChatMessage,
-} from "~/features/chat/utils";
+} from "~/components/chat/utils";
+
+import autoAnimate from "@formkit/auto-animate";
 
 export default function Chat() {
   const params = useParams();
   onMount(() => {
     const clientPromise = startChat(params.channel);
+    autoAnimate(document.getElementById("chat-list"));
 
     onCleanup(() => {
       console.log("cleanup?");
@@ -21,7 +24,7 @@ export default function Chat() {
   });
   return (
     <div class="h-screen overflow-y-scroll">
-      <div class="flex flex-col w-96 bg-gray-200 text-lg p-4">
+      <div class="flex flex-col w-96 bg-gray-200 text-lg p-4" id="chat-list">
         <For each={chatMessagesSignal()} fallback={<div />}>
           {(item) => <Message message={item} />}
         </For>
@@ -33,7 +36,7 @@ export default function Chat() {
 const Message = ({ message }: { message: TwitchChatMessage }) => {
   onMount(() => document.getElementById(message.user.id)?.scrollIntoView());
   return (
-    <div class="animate-fade-in text" id={message.user.id}>
+    <div id={message.user.id}>
       <span
         class="font-bold"
         style={{ color: message.user.color ?? "#000000" }}
