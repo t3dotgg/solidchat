@@ -1,14 +1,15 @@
-import tmi from "tmi.js";
+import type { ChatUserstate } from "tmi.js";
 import { createSignal, For, onMount } from "solid-js";
 
 type Message = {
-  user: tmi.ChatUserstate;
+  user: ChatUserstate;
   body: string;
 };
 
 const [signal, setSignal] = createSignal<Message[]>([]);
 
 if (typeof window !== undefined) {
+  const tmi = await import("tmi.js");
   const client = new tmi.Client({
     channels: ["#xqc"],
   });

@@ -1,15 +1,16 @@
-import tmi from "tmi.js";
+import type { ChatUserstate } from "tmi.js";
 import { createSignal, For, onMount } from "solid-js";
 import { useParams } from "solid-start";
 
 type Message = {
-  user: tmi.ChatUserstate;
+  user: ChatUserstate;
   body: string;
 };
 
 const [signal, setSignal] = createSignal<Message[]>([]);
 
-const startChat = (channel: string) => {
+const startChat = async (channel: string) => {
+  const tmi = await import("tmi.js");
   if (typeof window !== undefined) {
     const client = new tmi.Client({
       channels: [`#${channel}`],
