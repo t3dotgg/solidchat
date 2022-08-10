@@ -8,7 +8,6 @@ import {
 
 export default function Chat() {
   const params = useParams();
-  console.log("params?", params);
   onMount(() => startChat(params.channel));
   return (
     <div class="h-screen overflow-y-scroll">

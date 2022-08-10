@@ -99,7 +99,6 @@ export const startChat = async (channel: string) => {
     client.connect();
 
     client.on("message", (channel, userstate, message) => {
-      console.log("state", userstate);
       setSignal((prev) => [
         ...prev.slice(-100),
         {
