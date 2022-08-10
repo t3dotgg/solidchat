@@ -108,5 +108,7 @@ export const startChat = async (channel: string) => {
         },
       ]);
     });
+
+    return client;
   }
 };

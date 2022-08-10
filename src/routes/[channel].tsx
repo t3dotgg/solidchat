@@ -1,4 +1,4 @@
-import { For, onMount } from "solid-js";
+import { For, onMount, onCleanup } from "solid-js";
 import { useParams } from "solid-start";
 import {
   chatMessagesSignal,
@@ -8,7 +8,17 @@ import {
 
 export default function Chat() {
   const params = useParams();
-  onMount(() => startChat(params.channel));
+  onMount(() => {
+    const clientPromise = startChat(params.channel);
+
+    onCleanup(() => {
+      console.log("cleanup?");
+      clientPromise.then((client) => {
+        client.disconnect();
+        client.removeAllListeners();
+      });
+    });
+  });
   return (
     <div class="h-screen overflow-y-scroll">
       <div class="flex flex-col w-96 bg-gray-200 text-lg p-4">
