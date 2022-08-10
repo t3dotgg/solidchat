@@ -25,7 +25,8 @@ const startChat = async (channel: string) => {
   }
 };
 
-function getMessageHTML(message, { emotes }) {
+function getMessageHTML(message: string, user: ChatUserstate) {
+  const { emotes } = user;
   if (!emotes) return message;
 
   // store all emote keywords
