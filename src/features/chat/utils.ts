@@ -88,6 +88,8 @@ const [bufferedChatMessages, setBufferedChatMessages] = createSignal<
 
 createEffect(() => {
   const interval = setInterval(() => {
+    if (bufferedChatMessages().length === 0) return; // Early escape if no buffered messages
+
     setRenderedChatMessages((c) => [
       ...c.slice(-100),
       ...bufferedChatMessages(),
