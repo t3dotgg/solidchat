@@ -1,6 +1,5 @@
 import type { ChatUserstate } from "tmi.js";
 import { createEffect, createSignal } from "solid-js";
-import { mockMessage } from "./mock";
 
 export interface EmoteOptions {
   format?: "static" | "animated" | "default";
