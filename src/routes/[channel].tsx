@@ -24,7 +24,10 @@ export default function Chat() {
   });
   return (
     <div class="h-screen overflow-y-scroll">
-      <div class="flex flex-col w-96 bg-gray-200 text-lg p-4" id="chat-list">
+      <div
+        class="flex h-full w-96 flex-col justify-end bg-gray-200 p-4 text-lg"
+        id="chat-list"
+      >
         <For each={chatMessagesSignal()} fallback={<div />}>
           {(item) => <Message message={item} />}
         </For>

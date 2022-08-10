@@ -12,6 +12,8 @@
     "@types/tmi.js": "^1.8.1",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "solid-js": "1.4.7",
     "solid-start": "0.1.0-alpha.99",
     "solid-start-node": "0.1.0-alpha.99",
