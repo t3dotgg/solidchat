@@ -1,5 +1,3 @@
-import { createSignal, For, onMount } from "solid-js";
-
 export default function Chat() {
   return (
     <div class="h-screen overflow-y-scroll">

@@ -10,6 +10,7 @@
   "devDependencies": {
     "@solidjs/meta": "^0.28.0",
     "@solidjs/router": "^0.4.2",
+    "@types/dompurify": "^2.3.3",
     "@types/tmi.js": "^1.8.1",
     "autoprefixer": "^10.4.2",
     "patch-package": "^6.4.7",
