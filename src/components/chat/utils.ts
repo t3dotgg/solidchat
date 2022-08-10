@@ -88,7 +88,10 @@ const [bufferedChatMessages, setBufferedChatMessages] = createSignal<
 
 createEffect(() => {
   const interval = setInterval(() => {
-    setRenderedChatMessages((c) => [...c, ...bufferedChatMessages()]);
+    setRenderedChatMessages((c) => [
+      ...c.slice(-100),
+      ...bufferedChatMessages(),
+    ]);
     setBufferedChatMessages([]);
   }, 2000);
 
