@@ -1,5 +1,5 @@
 import type { ChatUserstate } from "tmi.js";
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { mockMessage } from "./mock";
 
 export interface EmoteOptions {
@@ -77,14 +77,29 @@ export type TwitchChatMessage = {
   html: string;
 };
 
-const [signal, setSignal] = createSignal<TwitchChatMessage[]>([
+const [renderedChatMessages, setRenderedChatMessages] = createSignal<
+  TwitchChatMessage[]
+>([
   // { ...mockMessage, html: getMessageHTML(mockMessage.body, mockMessage.user) },
 ]);
+
+const [bufferedChatMessages, setBufferedChatMessages] = createSignal<
+  TwitchChatMessage[]
+>([]);
+
+createEffect(() => {
+  const interval = setInterval(() => {
+    setRenderedChatMessages((c) => [...c, ...bufferedChatMessages()]);
+    setBufferedChatMessages([]);
+  }, 2000);
+
+  return () => clearInterval(interval);
+});
 
 /**
  * Signal of all chat messages
  */
-export const chatMessagesSignal = signal;
+export const chatMessagesSignal = renderedChatMessages;
 
 /**
  * Actually start chat
@@ -98,8 +113,8 @@ export const startChat = async (channel: string) => {
   client.connect();
 
   client.on("message", (channel, userstate, message) => {
-    setSignal((prev) => [
-      ...prev.slice(-100),
+    setBufferedChatMessages((prev) => [
+      ...prev,
       {
         user: userstate,
         body: message,

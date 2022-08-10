@@ -24,6 +24,7 @@
     "node": ">=14"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.1",
     "tmi.js": "^1.8.5"
   }
 }
